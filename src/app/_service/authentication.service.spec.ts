@@ -1,21 +1,16 @@
-import { Injectable } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthenticationService {
+import { AuthenticationService } from './authentication.service';
 
-  login(username: string, password: string):boolean  {
-    if (username == "admin" && password == "admin") {
-      localStorage.setItem('currentUser', "loggedin");
-      return true;
-    }
-    return false;
-  }
-  logout() {
-    localStorage.removeItem('currentUser');
-  }
-  public get loggedIn(): boolean {
-    return (localStorage.getItem('currentUser') !== null);
-  }
-}
+describe('AuthenticationService', () => {
+  let service: AuthenticationService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(AuthenticationService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+});
